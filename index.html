@@ -117,8 +117,8 @@ tr:hover td{background:#f0f9f0}
 .bdg-o{background:#fbe9e7;color:var(--r2)}
 
 /* PROGRESS */
-.pbar{background:var(--b1);border-radius:8px;height:7px;overflow:hidden;min-width:80px}
-.pfill{height:100%;border-radius:8px}
+.pbar{background:#e2e8f0;border-radius:8px;height:10px;overflow:hidden;min-width:90px}
+.pfill{height:100%;border-radius:8px;transition:width .4s}
 .p-g{background:linear-gradient(90deg,var(--g3),var(--g2))}
 .p-y{background:linear-gradient(90deg,#ffca28,var(--amber))}
 .p-r{background:linear-gradient(90deg,#ef9a9a,#c62828)}
@@ -793,8 +793,12 @@ function statusBdg(pctVal) {
   return '<span class="bdg bdg-r">❌ Chậm</span>';
 }
 function pBar(pctVal) {
-  const cls = pctVal>=95?'p-g':pctVal>=85?'p-y':'p-r';
-  return `<div class="pbar"><div class="pfill ${cls}" style="width:${Math.min(pctVal,100).toFixed(1)}%"></div></div>`;
+  const w = Math.min(pctVal, 100).toFixed(1);
+  const color = pctVal >= 100 ? '#2e7d32'
+              : pctVal >= 90  ? '#43a047'
+              : pctVal >= 80  ? '#f57f17'
+              : '#e53935';
+  return `<div class="pbar"><div class="pfill" style="width:${w}%;background:${color}"></div></div>`;
 }
 function rankBdg(r) {
   const m = {'A+':'bdg-g','A':'bdg-b','B':'bdg-b','C':'bdg-y','D':'bdg-r'};
