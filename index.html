@@ -1452,14 +1452,39 @@ function initCharts() {
   const tCD = CS_EMP.reduce((s,e)=>s+csSalary(e,CS_EW.total*CS_EW.dg).cd,0);
   const tLL = CS_EMP.reduce((s,e)=>s+csSalary(e,CS_EW.total*CS_EW.dg).net,0);
   dc('bl-pie');
+  const pieSliceLabel = {
+    id:'pieSliceLabel',
+    afterDraw(chart){
+      const {ctx,data}=chart;
+      const total=data.datasets[0].data.reduce((a,b)=>a+b,0);
+      chart.getDatasetMeta(0).data.forEach((arc,i)=>{
+        const val=data.datasets[0].data[i];
+        const pct=(val/total*100).toFixed(1);
+        if(pct<2) return;
+        const mid=(arc.startAngle+arc.endAngle)/2;
+        const r=(arc.innerRadius+arc.outerRadius)/2;
+        ctx.save();
+        ctx.fillStyle='#fff';
+        ctx.font='bold 12px Segoe UI,system-ui,sans-serif';
+        ctx.textAlign='center';
+        ctx.textBaseline='middle';
+        ctx.fillText(pct+'%', arc.x+Math.cos(mid)*r, arc.y+Math.sin(mid)*r);
+        ctx.restore();
+      });
+    }
+  };
   CHS['bl-pie'] = new Chart(document.getElementById('ch-bl-pie'),{
     type:'doughnut',
     data:{
       labels:['Lương thực lĩnh','BHXH/YT/TN','Công đoàn'],
       datasets:[{data:[tLL,tBH,tCD],backgroundColor:[G,RL,AL],borderWidth:3,borderColor:'#fff'}]
     },
+    plugins:[pieSliceLabel],
     options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${fmt(ctx.raw)} đ`}}}
+      plugins:{
+        legend:{position:'bottom'},
+        tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${fmt(ctx.raw)} đ`}}
+      }
     }
   });
 }
