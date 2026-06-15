@@ -280,10 +280,10 @@ tr:hover td{background:#f0f9f0}
     </div>
     <div class="kpi green">
       <div class="kpi-ico">🌱</div>
-      <div class="kpi-lbl">Tổng lương chăm sóc VCây</div>
-      <div class="kpi-val">84,200,000</div>
+      <div class="kpi-lbl">Thành tiền chăm sóc VCây</div>
+      <div class="kpi-val" id="tq-cs-total">—</div>
       <div class="kpi-sub">VND | 10 CN Việt Nam</div>
-      <span class="delta pos">+3.7% vs tháng trước</span>
+      <span class="delta pos" id="tq-cs-delta">—</span>
     </div>
     <div class="kpi blue">
       <div class="kpi-ico">👥</div>
@@ -300,8 +300,8 @@ tr:hover td{background:#f0f9f0}
     </div>
     <div class="kpi">
       <div class="kpi-ico">💰</div>
-      <div class="kpi-lbl">Tiết kiệm quĩ lương (CS)</div>
-      <div class="kpi-val tg">9,200,000</div>
+      <div class="kpi-lbl">Tiết kiệm quỹ lương (CS)</div>
+      <div class="kpi-val tg" id="tq-cs-tietkiem">—</div>
       <div class="kpi-sub">VND – Chăm sóc VCây</div>
     </div>
     <div class="kpi red">
@@ -320,46 +320,52 @@ tr:hover td{background:#f0f9f0}
 
       <div class="flow-step cs">
         <div class="flow-hd">🏢 Công ty giao</div>
-        <div class="flow-sub">9 hạng mục | 9 lô vườn</div>
-        <div class="flow-row" style="margin-top:6px">
-          <div class="flow-item"><span>Định mức (ĐM)</span><span>5 – 11.2 công/ha</span></div>
-          <div class="flow-item"><span>Tổng diện tích</span><span><strong>173.67 ha</strong></span></div>
-          <div class="flow-item"><span>Đơn giá (ĐG)</span><span>155K – 185K đ/công</span></div>
+        <div class="flow-item"><span>Số lô vườn</span><span><strong>9 lô</strong></span></div>
+        <div class="flow-item"><span>Tổng diện tích</span><span><strong>173.67 ha</strong></span></div>
+        <div class="flow-item"><span>Định mức</span><span>5 – 11.2 công/ha</span></div>
+        <div class="flow-item"><span>Đơn giá</span><span>155K – 185K đ/công</span></div>
+      </div>
+
+      <div class="flow-arr">→</div>
+
+      <div class="flow-step">
+        <div class="flow-hd">📋 Quỹ lương KH</div>
+        <div class="flow-formula">Tổng công = DT × ĐM</div>
+        <div style="margin:5px 0 8px">
+          <div class="flow-sub">Tổng công KH</div>
+          <div class="flow-val b" id="flow-tc-kh">—</div>
+        </div>
+        <div class="flow-formula">Quỹ KH = TC × ĐG</div>
+        <div style="margin-top:5px">
+          <div class="flow-sub">Tổng quỹ lương KH</div>
+          <div class="flow-val g" id="flow-tl-kh">—</div>
         </div>
       </div>
 
       <div class="flow-arr">→</div>
 
       <div class="flow-step">
-        <div class="flow-hd">📋 Quĩ lương KH</div>
-        <div class="flow-formula">Tổng công = DT × ĐM</div>
-        <div class="flow-val b" style="margin:4px 0">1,370.74 <small style="font-size:11px;font-weight:400;color:#718096">công</small></div>
-        <div class="flow-formula">Quĩ KH = TC × ĐG</div>
-        <div class="flow-val g" style="margin:4px 0">93,400,000 <small style="font-size:11px;font-weight:400;color:#718096">đ</small></div>
-      </div>
-
-      <div class="flow-arr">→</div>
-
-      <div class="flow-step">
-        <div class="flow-hd">✅ Nghiệm thu thực tế</div>
-        <div class="flow-row" style="margin-top:4px">
-          <div class="flow-item"><span>KL hoàn thành</span><span><strong>1,237.55 công</strong></span></div>
-          <div class="flow-item"><span>Tỉ lệ hoàn thành</span><span><strong style="color:#f57f17">90.3%</strong></span></div>
-          <div class="flow-item"><span>Thành tiền NT</span><span><strong>84,200,000 đ</strong></span></div>
+        <div class="flow-hd">✅ Nghiệm thu</div>
+        <div class="flow-item"><span>Công hoàn thành</span><span id="flow-tc-nt" style="font-weight:600">—</span></div>
+        <div class="flow-item"><span>Tỉ lệ HT</span><span id="flow-pct-nt" style="color:#f57f17;font-weight:700">—</span></div>
+        <div class="flow-item" style="border-top:2px solid #e2e8f0;margin-top:4px;padding-top:5px">
+          <span>Thành tiền NT</span>
+          <span id="flow-tl-nt" style="font-weight:700;color:#2e7d32">—</span>
         </div>
       </div>
 
       <div class="flow-arr">→</div>
 
       <div class="flow-step cs">
-        <div class="flow-hd">💵 Thực lĩnh</div>
-        <div class="flow-row" style="margin-top:4px">
-          <div class="flow-item"><span>Thành tiền NT</span><span>84,200,000 đ</span></div>
-          <div class="flow-item"><span>(−) BHXH, YT, TN</span><span style="color:#e53935">−8,950,000 đ</span></div>
-          <div class="flow-item"><span>(−) Công đoàn</span><span style="color:#e53935">−421,000 đ</span></div>
-          <div class="flow-item" style="padding-top:5px"><span>Tổng thực lĩnh</span><span style="color:var(--g1);font-size:13px">74,829,000 đ</span></div>
+        <div class="flow-hd">💵 Thực lĩnh (10 CN)</div>
+        <div class="flow-item"><span>Thành tiền NT</span><span id="flow-tl-nt2">—</span></div>
+        <div class="flow-item"><span>(−) BHXH,YT,TN</span><span id="flow-bh" style="color:#e53935">—</span></div>
+        <div class="flow-item"><span>(−) Công đoàn</span><span id="flow-cd" style="color:#e53935">—</span></div>
+        <div class="flow-item" style="border-top:2px solid #a5d6a7;margin-top:4px;padding-top:5px">
+          <span>Tổng thực lĩnh</span>
+          <span id="flow-ll" style="font-size:14px;font-weight:800;color:#1b5e20">—</span>
         </div>
-        <div class="flow-sub" style="margin-top:5px">≈ 7,483,000 đ/người (10 CN)</div>
+        <div class="flow-sub" style="margin-top:5px" id="flow-ll-pp">— đ/người</div>
       </div>
 
     </div>
@@ -368,7 +374,7 @@ tr:hover td{background:#f0f9f0}
   <!-- Charts row 1 -->
   <div class="chart-row chart-row-2" style="margin-bottom:14px">
     <div class="chart-card">
-      <div class="chart-title"><span class="ct-icon">📉</span>Xu hướng quĩ lương 6 tháng (01–06/2026)</div>
+      <div class="chart-title"><span class="ct-icon">📉</span>Xu hướng quỹ lương 6 tháng (01–06/2026)</div>
       <div class="chart-wrap h260"><canvas id="ch-tq-trend"></canvas></div>
     </div>
     <div class="chart-card">
@@ -380,7 +386,7 @@ tr:hover td{background:#f0f9f0}
   <!-- Charts row 2 -->
   <div class="chart-row chart-row-2h">
     <div class="chart-card">
-      <div class="chart-title"><span class="ct-icon">📊</span>So sánh quĩ lương KH vs thực trả</div>
+      <div class="chart-title"><span class="ct-icon">📊</span>So sánh quỹ lương KH vs thực trả</div>
       <div class="chart-wrap h240"><canvas id="ch-tq-compare"></canvas></div>
     </div>
     <div class="chart-card">
@@ -513,12 +519,12 @@ tr:hover td{background:#f0f9f0}
 <!-- ========== CHĂM SÓC - KẾ HOẠCH ========== -->
 <div id="sec-cs-kh" class="section">
   <div class="sh">
-    <div class="sh-title g-title">📋 Kế hoạch sản lượng & Quĩ lương – Tháng 06/2026</div>
+    <div class="sh-title g-title">📋 Kế hoạch sản lượng & Quỹ lương – Tháng 06/2026</div>
     <div class="sh-sub">Hạng mục công việc chăm sóc vườn cây – Đội A</div>
   </div>
   <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
     <div class="kpi green"><div class="kpi-lbl">Tổng công KH</div><div class="kpi-val" id="cs-kh-tc">—</div><div class="kpi-sub">công – 9 hạng mục</div></div>
-    <div class="kpi amber"><div class="kpi-lbl">Tổng quĩ lương KH</div><div class="kpi-val" id="cs-kh-tl">—</div><div class="kpi-sub">VND</div></div>
+    <div class="kpi amber"><div class="kpi-lbl">Tổng quỹ lương KH</div><div class="kpi-val" id="cs-kh-tl">—</div><div class="kpi-sub">VND</div></div>
     <div class="kpi blue"><div class="kpi-lbl">Diện tích canh tác</div><div class="kpi-val">173.67</div><div class="kpi-sub">ha – 9 lô vườn</div></div>
     <div class="kpi"><div class="kpi-lbl">Đơn giá BQ</div><div class="kpi-val">168,889</div><div class="kpi-sub">đ/công</div></div>
   </div>
@@ -671,7 +677,7 @@ tr:hover td{background:#f0f9f0}
   </div>
 
   <div class="sal-sum">
-    <div class="sal-box"><div class="sal-box-lbl">Quĩ lương KH</div><div class="sal-box-val cv-a">93,400,000 đ</div></div>
+    <div class="sal-box"><div class="sal-box-lbl">Quỹ lương KH</div><div class="sal-box-val cv-a">93,400,000 đ</div></div>
     <div class="sal-box"><div class="sal-box-lbl">Tổng lương gross</div><div class="sal-box-val cv-b" id="cs-bl-gross">—</div></div>
     <div class="sal-box"><div class="sal-box-lbl">Tổng khấu trừ</div><div class="sal-box-val cv-r" id="cs-bl-deduct">—</div></div>
     <div class="sal-box"><div class="sal-box-lbl">Tổng thực lĩnh</div><div class="sal-box-val cv-g fw7" id="cs-bl-net">—</div></div>
@@ -680,7 +686,7 @@ tr:hover td{background:#f0f9f0}
 
   <div class="chart-row chart-row-2h" style="margin-bottom:14px">
     <div class="chart-card">
-      <div class="chart-title"><span class="ct-icon">💰</span>Lương thực lĩnh vs BQ quĩ/người</div>
+      <div class="chart-title"><span class="ct-icon">💰</span>Lương thực lĩnh vs BQ quỹ/người</div>
       <div class="chart-wrap h240"><canvas id="ch-bl-bar"></canvas></div>
     </div>
     <div class="chart-card">
@@ -727,8 +733,8 @@ const TREND = {
   periods: ['01/2026','02/2026','03/2026','04/2026','05/2026','06/2026'],
   ktQuy:   [82000000,88000000,94000000,101000000,108000000,112000000],
   ktThuc:  [75000000,81000000,87000000, 94000000,100000000,105000000],
-  csQuy:   [89963100,85200000,91500000, 87800000, 90100000, 93400000],
-  csThuc:  [80036550,76500000,82100000, 78900000, 81200000, 84200000],
+  csQuy:   [89963100,85200000,91500000, 87800000, 90100000, 233054780],
+  csThuc:  [80036550,76500000,82100000, 78900000, 81200000, 210334050],
   slTuoi:  [72.1, 78.4, 85.2, 90.6, 86.3, 88.6], // tấn
 };
 
@@ -1090,12 +1096,20 @@ function renderCT() {
 
 function renderBL() {
   const tbody = document.getElementById('tbl-bl');
-  const quyKH = 93400000/10;
+  // Compute NT thành tiền from CS_PLOTS (consistent with Nghiệm thu tab)
+  let totalNT = 0;
+  CS_PLOTS.forEach(pl => {
+    const plan = CS_PLANS.find(p => p.id === pl.taskId);
+    if (plan) totalNT += Math.round(pl.klHT * plan.dg);
+  });
+  let totalKH = 0;
+  CS_PLANS.forEach(p => { totalKH += Math.round(p.dt * p.dm * p.dg); });
+  const quyKH = totalKH / CS_EMP.length;
+  const tt = totalNT / CS_EMP.length;
   let tCong=0,tTT=0,tCD=0,tBH=0,tLL=0;
   tbody.innerHTML = CS_EMP.map(e=>{
-    const tt = CS_EW.total * CS_EW.dg;
     const sal = csSalary(e,tt);
-    const mdHT = (CS_EW.total/(quyKH/CS_EW.dg)*100).toFixed(1);
+    const mdHT = (tt/quyKH*100).toFixed(1);
     tCong+=CS_EW.total; tTT+=tt; tCD+=sal.cd; tBH+=sal.bh; tLL+=sal.net;
     const diff=tt-quyKH;
     const soKH=diff>0?`<span class="bdg bdg-r">+${fmt(diff)}</span>`:`<span class="bdg bdg-g">-${fmt(-diff)}</span>`;
@@ -1121,6 +1135,38 @@ function renderBL() {
   document.getElementById('bl-badge').innerHTML=`<span class="tag">Thực lĩnh: ${fmt(tLL)} đ</span>`;
 }
 
+function updateCSFlow() {
+  let tTC_KH=0, tTL_KH=0;
+  CS_PLANS.forEach(p => {
+    const tc = +(p.dt*p.dm).toFixed(2);
+    tTC_KH += tc;
+    tTL_KH += Math.round(tc*p.dg);
+  });
+  let tTC_NT=0, tTL_NT=0;
+  CS_PLOTS.forEach(pl => {
+    const plan = CS_PLANS.find(p=>p.id===pl.taskId);
+    if (plan) { tTC_NT += pl.klHT; tTL_NT += Math.round(pl.klHT*plan.dg); }
+  });
+  const ttPP = tTL_NT / CS_EMP.length;
+  const tBH = CS_EMP.reduce((s,e)=>s+Math.round((e.heSo+0.15)*e.bhBase*0.105),0);
+  const tCD = CS_EMP.reduce((s,e)=>s+Math.round((ttPP-Math.round((e.heSo+0.15)*e.bhBase*0.105))*0.005),0);
+  const tLL = tTL_NT - tBH - tCD;
+  const set = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+  set('flow-tc-kh', fd(tTC_KH)+' công');
+  set('flow-tl-kh', fmt(tTL_KH)+' đ');
+  set('flow-tc-nt', fd(tTC_NT)+' công');
+  set('flow-pct-nt', (tTC_NT/tTC_KH*100).toFixed(1)+'%');
+  set('flow-tl-nt', fmt(tTL_NT)+' đ');
+  set('flow-tl-nt2', fmt(tTL_NT)+' đ');
+  set('flow-bh', '−'+fmt(tBH)+' đ');
+  set('flow-cd', '−'+fmt(tCD)+' đ');
+  set('flow-ll', fmt(tLL)+' đ');
+  set('flow-ll-pp', '≈ '+fmt(Math.round(tLL/CS_EMP.length))+' đ/người');
+  set('tq-cs-total', fmt(tTL_NT));
+  set('tq-cs-delta', '+'+((tTL_NT/210334050-1)*100).toFixed(1)+'% vs T05');
+  set('tq-cs-tietkiem', fmt(tTL_KH-tTL_NT));
+}
+
 // ============================================================
 // CHARTS
 // ============================================================
@@ -1135,9 +1181,9 @@ function initCharts() {
     data:{
       labels:TREND.periods,
       datasets:[
-        {label:'Quĩ lương KT mủ (Riel)',data:TREND.ktQuy,borderColor:RD,backgroundColor:RL+'55',fill:true,tension:.3,pointRadius:4,yAxisID:'y'},
+        {label:'Quỹ lương KT mủ (Riel)',data:TREND.ktQuy,borderColor:RD,backgroundColor:RL+'55',fill:true,tension:.3,pointRadius:4,yAxisID:'y'},
         {label:'Thực trả KT mủ (Riel)',data:TREND.ktThuc,borderColor:R,backgroundColor:RL+'33',fill:false,tension:.3,pointRadius:4,borderDash:[4,3],yAxisID:'y'},
-        {label:'Quĩ lương CS VCây (VND)',data:TREND.csQuy,borderColor:A,backgroundColor:AL+'55',fill:true,tension:.3,pointRadius:4,yAxisID:'y2'},
+        {label:'Quỹ lương CS VCây (VND)',data:TREND.csQuy,borderColor:A,backgroundColor:AL+'55',fill:true,tension:.3,pointRadius:4,yAxisID:'y2'},
         {label:'Thực trả CS VCây (VND)',data:TREND.csThuc,borderColor:G,backgroundColor:GL+'33',fill:false,tension:.3,pointRadius:4,borderDash:[4,3],yAxisID:'y2'},
       ]
     },
@@ -1173,7 +1219,7 @@ function initCharts() {
     data:{
       labels:['KT mủ T06\n(Triệu R)','CS VCây T06\n(Triệu đ)'],
       datasets:[
-        {label:'Quĩ lương KH',data:[112,93.4],backgroundColor:AL,borderColor:A,borderWidth:2,borderRadius:4},
+        {label:'Quỹ lương KH',data:[112,93.4],backgroundColor:AL,borderColor:A,borderWidth:2,borderRadius:4},
         {label:'Thực trả',data:[105,84.2],backgroundColor:GL,borderColor:G,borderWidth:2,borderRadius:4},
       ]
     },
@@ -1506,6 +1552,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   buildEmpSel();
   renderCT();
   renderBL();
+  updateCSFlow();
   setTimeout(initCharts, 150);
 });
 </script>
