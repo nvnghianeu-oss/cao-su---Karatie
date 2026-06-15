@@ -53,8 +53,7 @@ header{background:linear-gradient(135deg,var(--g1) 0%,var(--r1) 100%);color:#fff
 
 /* FILTER BAR */
 .filter-bar{background:#fff;border-bottom:1px solid var(--b1);padding:8px 24px;
-  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-  position:sticky;top:138px;z-index:130}
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .f-label{font-size:11px;color:var(--b2);font-weight:600;white-space:nowrap}
 .f-sel{border:1px solid var(--b1);border-radius:6px;padding:4px 10px;
   font-size:12px;color:var(--b3);background:#fff;cursor:pointer;outline:none}
@@ -98,6 +97,8 @@ header{background:linear-gradient(135deg,var(--g1) 0%,var(--r1) 100%);color:#fff
 .tcard{background:#fff;border-radius:var(--rd);padding:18px;box-shadow:var(--sh);margin-bottom:14px;overflow-x:auto}
 .thead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .ttitle{font-size:13px;font-weight:700;color:var(--b3);display:flex;align-items:center;gap:7px}
+.tscroll{max-height:420px;overflow-y:auto}
+.tscroll thead th{position:sticky;top:0;z-index:2}
 table{width:100%;border-collapse:collapse;font-size:12px}
 th{background:var(--g1);color:#fff;padding:9px 11px;text-align:left;font-weight:600;white-space:nowrap}
 th.r,td.r{text-align:right}th.c,td.c{text-align:center}
@@ -358,14 +359,14 @@ tr:hover td{background:#f0f9f0}
       <div class="ttitle">🏆 Xếp hạng hiệu suất công nhân khai thác</div>
       <div><span class="tag-b tag">Tháng 06/2026</span></div>
     </div>
-    <table>
+    <div class="tscroll"><table>
       <thead><tr>
         <th class="c">Hạng</th><th>Mã NV</th><th>Họ tên</th><th class="c">Tổ</th>
         <th class="r">KH (kg)</th><th class="r">Thực tế (kg)</th>
         <th class="r">Hiệu suất</th><th class="c">XH KT</th><th class="c">Trạng thái</th>
       </tr></thead>
       <tbody id="tbl-kt-rank"></tbody>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -400,7 +401,7 @@ tr:hover td{background:#f0f9f0}
       <div class="ttitle">📄 Bảng lương chi tiết – <span id="kt-filter-lbl">Tất cả Tổ</span></div>
       <div id="kt-tbl-summary"></div>
     </div>
-    <table>
+    <div class="tscroll"><table>
       <thead><tr>
         <th class="c">STT</th><th>Mã NV</th><th>Họ tên</th><th class="c">Tổ</th>
         <th class="r">Công</th><th class="r">CN ngày</th>
@@ -415,7 +416,7 @@ tr:hover td{background:#f0f9f0}
         <td class="r" id="f-kt-sl"></td><td></td><td class="r" id="f-kt-kt"></td>
         <td class="r fw7" id="f-kt-all"></td>
       </tr></tfoot>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -425,7 +426,6 @@ tr:hover td{background:#f0f9f0}
     <div class="sh-title g-title">📋 Kế hoạch sản lượng & Quĩ lương – Tháng 06/2026</div>
     <div class="sh-sub">Hạng mục công việc chăm sóc vườn cây – Đội A</div>
   </div>
-  <div class="notice">ℹ️ Kế hoạch từ <strong>Dự Toán</strong> công ty. Tổng công = Diện tích × Định mức. Quĩ lương = Tổng công × Đơn giá.</div>
   <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
     <div class="kpi green"><div class="kpi-lbl">Tổng công KH</div><div class="kpi-val" id="cs-kh-tc">—</div><div class="kpi-sub">công – 9 hạng mục</div></div>
     <div class="kpi amber"><div class="kpi-lbl">Tổng quĩ lương KH</div><div class="kpi-val" id="cs-kh-tl">—</div><div class="kpi-sub">VND</div></div>
@@ -437,7 +437,7 @@ tr:hover td{background:#f0f9f0}
       <div class="ttitle">📋 Danh sách kế hoạch hạng mục</div>
       <div id="cs-kh-badge"></div>
     </div>
-    <table>
+    <div class="tscroll"><table>
       <thead><tr>
         <th>ID</th><th>Hạng mục</th><th>Nội dung</th><th class="c">Đội</th>
         <th class="r">MĐ</th><th class="c">ĐVT</th><th class="r">ĐM</th>
@@ -449,7 +449,7 @@ tr:hover td{background:#f0f9f0}
         <td colspan="8">TỔNG</td>
         <td class="r fw7" id="f-cs-kh-tc"></td><td></td><td class="r fw7" id="f-cs-kh-tl"></td>
       </tr></tfoot>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -477,7 +477,7 @@ tr:hover td{background:#f0f9f0}
   </div>
   <div class="tcard">
     <div class="thead"><div class="ttitle">✅ Bảng so sánh KH – NT</div><div id="nt-badge"></div></div>
-    <table>
+    <div class="tscroll"><table>
       <thead><tr>
         <th>ID</th><th>Nội dung</th><th class="r">MĐ</th><th class="r">DT(ha)</th><th class="r">ĐG(đ)</th>
         <th class="r">Công KH</th><th class="r">Tiền KH(đ)</th>
@@ -492,7 +492,7 @@ tr:hover td{background:#f0f9f0}
         <td class="r fw7" id="f-nt-tnt"></td>
         <td class="r fw7 tg" id="f-nt-ch"></td><td class="c fw7" id="f-nt-pct"></td>
       </tr></tfoot>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -502,7 +502,6 @@ tr:hover td{background:#f0f9f0}
     <div class="sh-title g-title">🌳 Theo dõi khối lượng vườn cây theo Lô</div>
     <div class="sh-sub">Tiến độ KL giao vs hoàn thành – 9 lô vườn – Tháng 06/2026</div>
   </div>
-  <div class="notice">📌 % hoàn thành dưới <strong>85%</strong> cần theo dõi và có biện pháp xử lý kịp thời.</div>
   <div class="chart-card" style="margin-bottom:14px">
     <div class="chart-title"><span class="ct-icon">📊</span>KL giao vs KL hoàn thành theo Lô vườn (công)</div>
     <div class="chart-wrap h320"><canvas id="ch-kl-bar"></canvas></div>
@@ -512,7 +511,7 @@ tr:hover td{background:#f0f9f0}
       <div class="ttitle">🌳 Chi tiết KL theo Lô – <span id="kl-filter-lbl">Tất cả</span></div>
       <div><span class="tag">9 lô vườn</span></div>
     </div>
-    <table>
+    <div class="tscroll"><table>
       <thead><tr>
         <th class="c">STT</th><th>Task ID</th><th>Tên lô</th><th>Hạng mục</th>
         <th class="r">Năm trồng</th><th class="r">Diện tích (ha)</th>
@@ -527,7 +526,7 @@ tr:hover td{background:#f0f9f0}
         <td class="r fw7" id="f-kl-ht"></td>
         <td class="r fw7" id="f-kl-pct"></td><td></td>
       </tr></tfoot>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -537,7 +536,6 @@ tr:hover td{background:#f0f9f0}
     <div class="sh-title g-title">👤 Chi tiết nghiệm thu từng nhân sự</div>
     <div class="sh-sub">Tháng 06/2026 | Đội A | Chọn nhân sự để xem chi tiết</div>
   </div>
-  <div class="notice">📌 Mỗi nhân sự được giao bằng nhau: <strong>3.811 ha MĐ571 (34.3 công) + 1.117 ha MĐ714 (12.51 công) = 46.81 công</strong></div>
 
   <div class="emp-selector">
     <span class="emp-sel-lbl">👤 Chọn nhân sự:</span>
@@ -555,7 +553,7 @@ tr:hover td{background:#f0f9f0}
 
   <div class="tcard">
     <div class="thead"><div class="ttitle">📄 Bảng chi tiết nghiệm thu tất cả nhân sự</div></div>
-    <table>
+    <div class="tscroll"><table>
       <thead><tr>
         <th class="c">STT</th><th>Họ và tên</th>
         <th class="r">DT MĐ571(ha)</th><th class="r">Công MĐ571</th>
@@ -571,7 +569,7 @@ tr:hover td{background:#f0f9f0}
         <td class="r">468.10</td><td></td>
         <td class="r fw7" id="f-ct-total"></td><td></td>
       </tr></tfoot>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -606,7 +604,7 @@ tr:hover td{background:#f0f9f0}
       <div class="ttitle">💵 Bảng lương chi tiết</div>
       <div id="bl-badge"></div>
     </div>
-    <table>
+    <div class="tscroll"><table>
       <thead><tr>
         <th class="c">STT</th><th>Họ và tên</th><th class="r">Hệ số LCB</th>
         <th class="r">Số công</th><th class="r">MĐ HT(%)</th>
@@ -623,7 +621,7 @@ tr:hover td{background:#f0f9f0}
         <td class="r fw7" id="f-bl-bh"></td>
         <td class="r fw7" id="f-bl-ll"></td><td></td>
       </tr></tfoot>
-    </table>
+    </table></div>
   </div>
 </div>
 
