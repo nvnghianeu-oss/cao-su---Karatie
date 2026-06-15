@@ -134,6 +134,22 @@ tr:hover td{background:#f0f9f0}
   padding:10px 14px;font-size:12px;color:var(--g1);margin-bottom:14px}
 .notice.red{background:#fbe9e7;border-color:var(--r4);color:var(--r2)}
 
+/* SALARY FLOW */
+.flow-wrap{display:flex;align-items:stretch;gap:0;margin-bottom:4px;overflow-x:auto}
+.flow-step{flex:1;min-width:160px;background:#f7f9fb;border:1.5px solid #e2e8f0;border-radius:10px;
+  padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+.flow-step.cs{background:#e8f5e9;border-color:#a5d6a7}
+.flow-step.kt{background:#fbe9e7;border-color:#ffccbc}
+.flow-hd{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:flex;align-items:center;gap:5px}
+.flow-formula{font-size:11px;color:#718096;padding:3px 7px;background:#fff;border-radius:5px;border:1px solid #e2e8f0;font-family:monospace}
+.flow-val{font-size:15px;font-weight:800;color:#2d3748}
+.flow-val.g{color:var(--g1)}.flow-val.r{color:var(--r2)}.flow-val.b{color:var(--blue)}
+.flow-sub{font-size:11px;color:#718096}
+.flow-row{display:flex;flex-direction:column;gap:3px}
+.flow-item{font-size:11px;color:#4a5568;display:flex;justify-content:space-between;gap:8px;padding:2px 0;border-bottom:1px dashed #e2e8f0}
+.flow-item:last-child{border-bottom:none;font-weight:700}
+.flow-arr{display:flex;align-items:center;padding:0 6px;font-size:22px;color:#a0aec0;flex-shrink:0}
+
 /* SALARY SUMMARY ROW */
 .sal-sum{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .sal-box{flex:1;min-width:140px;background:#f7f8fa;border-radius:var(--rd);
@@ -294,6 +310,58 @@ tr:hover td{background:#f0f9f0}
       <div class="kpi-val">98.4%</div>
       <div class="kpi-sub">Khai thác mủ – Tháng 06</div>
       <span class="delta pos">+2.1% vs KH</span>
+    </div>
+  </div>
+
+  <!-- CS Salary Flow -->
+  <div class="chart-card" style="margin-bottom:14px">
+    <div class="chart-title"><span class="ct-icon">🌱</span>Cơ cấu hình thành lương – Chăm sóc vườn cây (Tháng 06/2026)</div>
+    <div class="flow-wrap">
+
+      <div class="flow-step cs">
+        <div class="flow-hd">🏢 Công ty giao</div>
+        <div class="flow-sub">9 hạng mục | 9 lô vườn</div>
+        <div class="flow-row" style="margin-top:6px">
+          <div class="flow-item"><span>Định mức (ĐM)</span><span>5 – 11.2 công/ha</span></div>
+          <div class="flow-item"><span>Tổng diện tích</span><span><strong>173.67 ha</strong></span></div>
+          <div class="flow-item"><span>Đơn giá (ĐG)</span><span>155K – 185K đ/công</span></div>
+        </div>
+      </div>
+
+      <div class="flow-arr">→</div>
+
+      <div class="flow-step">
+        <div class="flow-hd">📋 Quĩ lương KH</div>
+        <div class="flow-formula">Tổng công = DT × ĐM</div>
+        <div class="flow-val b" style="margin:4px 0">1,370.74 <small style="font-size:11px;font-weight:400;color:#718096">công</small></div>
+        <div class="flow-formula">Quĩ KH = TC × ĐG</div>
+        <div class="flow-val g" style="margin:4px 0">93,400,000 <small style="font-size:11px;font-weight:400;color:#718096">đ</small></div>
+      </div>
+
+      <div class="flow-arr">→</div>
+
+      <div class="flow-step">
+        <div class="flow-hd">✅ Nghiệm thu thực tế</div>
+        <div class="flow-row" style="margin-top:4px">
+          <div class="flow-item"><span>KL hoàn thành</span><span><strong>1,237.55 công</strong></span></div>
+          <div class="flow-item"><span>Tỉ lệ hoàn thành</span><span><strong style="color:#f57f17">90.3%</strong></span></div>
+          <div class="flow-item"><span>Thành tiền NT</span><span><strong>84,200,000 đ</strong></span></div>
+        </div>
+      </div>
+
+      <div class="flow-arr">→</div>
+
+      <div class="flow-step cs">
+        <div class="flow-hd">💵 Thực lĩnh</div>
+        <div class="flow-row" style="margin-top:4px">
+          <div class="flow-item"><span>Thành tiền NT</span><span>84,200,000 đ</span></div>
+          <div class="flow-item"><span>(−) BHXH, YT, TN</span><span style="color:#e53935">−8,950,000 đ</span></div>
+          <div class="flow-item"><span>(−) Công đoàn</span><span style="color:#e53935">−421,000 đ</span></div>
+          <div class="flow-item" style="padding-top:5px"><span>Tổng thực lĩnh</span><span style="color:var(--g1);font-size:13px">74,829,000 đ</span></div>
+        </div>
+        <div class="flow-sub" style="margin-top:5px">≈ 7,483,000 đ/người (10 CN)</div>
+      </div>
+
     </div>
   </div>
 
@@ -1297,8 +1365,6 @@ function initCharts() {
   const klLabels = CS_PLANS.map(p=>p.lo+' ('+p.lbl+')');
   const klGiao = CS_PLOTS.map(pl=>pl.klGiao);
   const klHT = CS_PLOTS.map(pl=>pl.klHT);
-  const klColors = CS_PLOTS.map(pl=>pl.klHT/pl.klGiao>=0.95?GL:pl.klHT/pl.klGiao>=0.85?AL:RL);
-  const klBorders = CS_PLOTS.map(pl=>pl.klHT/pl.klGiao>=0.95?G:pl.klHT/pl.klGiao>=0.85?A:RD);
   dc('kl-bar');
   CHS['kl-bar'] = new Chart(document.getElementById('ch-kl-bar'),{
     type:'bar',
@@ -1306,7 +1372,7 @@ function initCharts() {
       labels:klLabels,
       datasets:[
         {label:'KL giao (công)',data:klGiao,backgroundColor:BL+'cc',borderColor:B,borderWidth:2,borderRadius:3},
-        {label:'KL hoàn thành (công)',data:klHT,backgroundColor:klColors,borderColor:klBorders,borderWidth:2,borderRadius:3},
+        {label:'KL hoàn thành (công)',data:klHT,backgroundColor:AL+'dd',borderColor:A,borderWidth:2,borderRadius:3},
       ]
     },
     options:{
